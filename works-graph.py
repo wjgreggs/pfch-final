@@ -39,7 +39,7 @@ for program in data['programs']:
 
 #print(edges) 
 
-with open('nodes.csv', 'w') as nodefile:
+with open('nodes_works.csv', 'w') as nodefile:
     writer = csv.writer(nodefile, delimiter=';')
     writer.writerow (["Id", "Label"])
 
@@ -47,7 +47,7 @@ with open('nodes.csv', 'w') as nodefile:
         graph_id = nodes[name]
         writer.writerow([graph_id,name])
 
-with open('edges.csv', 'w') as edgefile:
+with open('edges_works.csv', 'w') as edgefile:
     writer = csv.writer(edgefile,delimiter=';')
     writer.writerow (["Source","Target","Weight"])
 
