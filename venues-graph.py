@@ -10,26 +10,35 @@ data = json.load(open('complete.json'))
 
 for program in data['programs']:
 
+    for concerts in program['concerts']:
+        if "Venue" in concerts:
+            if concerts['Venue'] not in nodes:
+                nodes[concerts['Venue']] = node_counter
+                node_counter = node_counter + 1
+
+
     for work in program['works']:
 
-        if 'composerName' in work and "workTitle" in work:
+        if 'composerName' in work:
             if work['composerName'] not in nodes:
                 nodes[work['composerName']] = node_counter
                 node_counter = node_counter + 1
-            if work['workTitle'] not in nodes:
-                nodes[work["workTitle"]] = node_counter
-                node_counter = node_counter +1
-
+           
 for program in data['programs']:
+    
+    for concerts in program['concerts']:
+
+        if 'Venue' in concerts:
+            venue_id = nodes[concerts['Venue']]
 
     for work in program['works']:
 
-        if 'composerName' in work and "workTitle" in work:
+        if 'composerName' in work:
 
             composer_id = nodes[work['composerName']]
-            work_id = nodes[work["workTitle"]]
+        
 
-            relationship = f"{composer_id}-{work_id}"
+            relationship = f"{composer_id}-{venue_id}"
 
             if relationship in edges:
                 edges[relationship] = edges[relationship] + 1
@@ -39,7 +48,7 @@ for program in data['programs']:
 
 #print(edges) 
 
-with open('nodes.csv', 'w') as nodefile:
+with open('nodes_venues.csv', 'w') as nodefile:
     writer = csv.writer(nodefile, delimiter=';')
     writer.writerow (["Id", "Label"])
 
@@ -47,7 +56,7 @@ with open('nodes.csv', 'w') as nodefile:
         graph_id = nodes[name]
         writer.writerow([graph_id,name])
 
-with open('edges.csv', 'w') as edgefile:
+with open('edges_venues.csv', 'w') as edgefile:
     writer = csv.writer(edgefile,delimiter=';')
     writer.writerow (["Source","Target","Weight"])
 
