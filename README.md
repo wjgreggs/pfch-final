@@ -9,7 +9,7 @@ The resultant nodes and edges csv files are then imported into Gephi where the d
 
 ISSUES WITH CODE
 
-• All of these scripts except "works-graph.py", which had a unhashable dict error I couldn't resolve, produce the desired csv files.
+• All of these scripts except "works-graph.py", which had a unhashable dict error I couldn't resolve, produce the desired csv files, which have been uploaded in a zip file to Canvas.
 
 ISSUES WITH GEPHI
 
